@@ -14,7 +14,7 @@ then
 `require 'chirp_stack_api'`
 
 
-The grpc types will be in the `ChirpStacKAPI` namespace with the chirpstack groups in uppercase.
+The grpc types will be in the `ChirpStackAPI` namespace with the chirpstack groups in uppercase.
 
 e.g.
 
