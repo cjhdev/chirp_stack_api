@@ -6,6 +6,7 @@ Gem::Specification.new do |s|
   s.version = ChirpStackAPI::VERSION
   s.summary = "ChirpStack API"
   s.author  = "Cameron Harper"
+  s.license  = "MIT"
   s.date = Date.today.to_s
   s.files = Dir.glob("lib/**/*.rb")
 

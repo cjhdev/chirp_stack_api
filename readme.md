@@ -30,8 +30,14 @@ e.g.
 `make generate`
 
 - creates docker environment
-- runs the generator
+- runs the generator script
 
+The generator script exists to:
+
+- take a copy of the upstream proto files
+- insert the Ruby namesace into our copy
+- run protoc on our copy
+- insert `require` for all the generated files
 
 
 
