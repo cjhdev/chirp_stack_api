@@ -36,16 +36,20 @@ module ChirpStackAPI
         rpc :DeleteKeys, ::ChirpStackAPI::API::DeleteDeviceKeysRequest, ::Google::Protobuf::Empty
         # FlushDevNonces flushes the OTAA device nonces.
         rpc :FlushDevNonces, ::ChirpStackAPI::API::FlushDevNoncesRequest, ::Google::Protobuf::Empty
-        # Activate (re)activates the device with the given parameters (for ABP or for importing OTAA activations).
+        # Activate (re)activates the device with the given parameters (for ABP or for
+        # importing OTAA activations).
         rpc :Activate, ::ChirpStackAPI::API::ActivateDeviceRequest, ::Google::Protobuf::Empty
         # Deactivate de-activates the device.
         rpc :Deactivate, ::ChirpStackAPI::API::DeactivateDeviceRequest, ::Google::Protobuf::Empty
-        # GetActivation returns the current activation details of the device (OTAA or ABP).
+        # GetActivation returns the current activation details of the device (OTAA or
+        # ABP).
         rpc :GetActivation, ::ChirpStackAPI::API::GetDeviceActivationRequest, ::ChirpStackAPI::API::GetDeviceActivationResponse
-        # GetRandomDevAddr returns a random DevAddr taking the NwkID prefix into account.
+        # GetRandomDevAddr returns a random DevAddr taking the NwkID prefix into
+        # account.
         rpc :GetRandomDevAddr, ::ChirpStackAPI::API::GetRandomDevAddrRequest, ::ChirpStackAPI::API::GetRandomDevAddrResponse
         # GetMetrics returns the device metrics.
-        # Note that this requires a device-profile with codec and measurements configured.
+        # Note that this requires a device-profile with codec and measurements
+        # configured.
         rpc :GetMetrics, ::ChirpStackAPI::API::GetDeviceMetricsRequest, ::ChirpStackAPI::API::GetDeviceMetricsResponse
         # GetLinkMetrics returns the device link metrics.
         # This includes uplinks, downlinks, RSSI, SNR, etc...
@@ -56,6 +60,10 @@ module ChirpStackAPI
         rpc :FlushQueue, ::ChirpStackAPI::API::FlushDeviceQueueRequest, ::Google::Protobuf::Empty
         # GetQueue returns the downlink device-queue.
         rpc :GetQueue, ::ChirpStackAPI::API::GetDeviceQueueItemsRequest, ::ChirpStackAPI::API::GetDeviceQueueItemsResponse
+        # GetNextFCntDown returns the next FCntDown to use for enqueing encrypted
+        # downlinks. The difference with the DeviceActivation f_cont_down is that
+        # this method takes potential existing queue-items into account.
+        rpc :GetNextFCntDown, ::ChirpStackAPI::API::GetDeviceNextFCntDownRequest, ::ChirpStackAPI::API::GetDeviceNextFCntDownResponse
       end
 
       Stub = Service.rpc_stub_class

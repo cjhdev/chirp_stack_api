@@ -33,6 +33,9 @@ message DeviceSession {
   // AppSKey envelope.
   common.KeyEnvelope app_s_key = 8;
 
+  // JS Session Key ID.
+  bytes js_session_key_id = 42;
+
   // Uplink frame-counter.
   uint32 f_cnt_up = 9;
 
@@ -105,6 +108,10 @@ message DeviceSession {
   DeviceSession pending_rejoin_device_session = 29;
 
   // Uplink history for ADR (last 20 uplink transmissions).
+  // This table is reset in case one of parameters has changed:
+  //   * DR
+  //   * TxPower
+  //   * NbTrans
   repeated UplinkAdrHistory uplink_adr_history = 30;
 
   // Mac-command error count.

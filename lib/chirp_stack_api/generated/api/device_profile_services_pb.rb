@@ -7,7 +7,8 @@ require 'api/device_profile_pb'
 module ChirpStackAPI
   module API
     module DeviceProfileService
-      # DeviceProfileService is the service providing API methods for managing device-profiles.
+      # DeviceProfileService is the service providing API methods for managing
+      # device-profiles.
       class Service
 
         include ::GRPC::GenericService
