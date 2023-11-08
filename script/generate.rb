@@ -11,7 +11,7 @@ OUTPUT_GENERATED = File.join(OUTPUT_LIB, "chirp_stack_api", "generated")
 
 ## copy the protos we wish to modify
 
-system "rm -rf #{File.join(OUTPUT_LIB, "*")}"
+system "rm -rf #{File.join(OUTPUT_LIB, "chirp_stack_api")}"
 
 FileUtils::mkdir_p(OUTPUT_PROTO)
 FileUtils::mkdir_p(OUTPUT_GENERATED)
@@ -46,20 +46,6 @@ end
 ## generate
 
 system "grpc_tools_ruby_protoc -I/opt/googleapis -I#{OUTPUT_PROTO} --ruby_out=#{OUTPUT_GENERATED} --grpc_out=#{OUTPUT_GENERATED} #{Dir[File.join(OUTPUT_PROTO, "**", "*.proto")].join(" ")}"
-
-File.open(File.join(OUTPUT_LIB, "chirp_stack_api.rb"), "w") do |f|
-
-  base = File.join(Dir.pwd, "lib/")
-
-  Dir[File.join(OUTPUT_GENERATED, "**", "*.rb")].each do |fn|
-
-    f.puts "require \"#{fn.sub(base, "")}\""
-
-  end
-
-  f.puts ""
-
-end
 
 File.open(File.join(OUTPUT_LIB, "chirp_stack_api", "version.rb"), "w") do |f|
 
