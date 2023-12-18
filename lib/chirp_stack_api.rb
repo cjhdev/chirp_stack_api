@@ -1,9 +1,14 @@
 module ChirpStackAPI
 
-    $LOAD_PATH.unshift File.expand_path("#{File.dirname(__FILE__)}/generated")
+  $LOAD_PATH.unshift File.join(__dir__, "chirp_stack_api", "generated")
 
-    Dir["#{File.dirname(__FILE__)}/generated/**/*_pb.rb"].each { |f| require f }
+  Dir[File.join(File.dirname(__FILE__), "chirp_stack_api", "generated", "**", "*.rb")].each do |f|
 
-    $LOAD_PATH.shift
+    require f
+
+  end
+
+  $LOAD_PATH.shift
 
 end
+
