@@ -9,32 +9,10 @@ require 'google/protobuf/timestamp_pb'
 require 'google/protobuf/empty_pb'
 
 
-descriptor_data = "\n\x0e\x61pi/user.proto\x12\x03\x61pi\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\"T\n\x04User\x12\n\n\x02id\x18\x01 \x01(\t\x12\x10\n\x08is_admin\x18\x04 \x01(\x08\x12\x11\n\tis_active\x18\x05 \x01(\x08\x12\r\n\x05\x65mail\x18\x06 \x01(\t\x12\x0c\n\x04note\x18\x07 \x01(\t\"\xae\x01\n\x0cUserListItem\x12\n\n\x02id\x18\x01 \x01(\t\x12.\n\ncreated_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\r\n\x05\x65mail\x18\x04 \x01(\t\x12\x10\n\x08is_admin\x18\x05 \x01(\x08\x12\x11\n\tis_active\x18\x06 \x01(\x08\"d\n\nUserTenant\x12\x11\n\ttenant_id\x18\x01 \x01(\t\x12\x10\n\x08is_admin\x18\x02 \x01(\x08\x12\x17\n\x0fis_device_admin\x18\x03 \x01(\x08\x12\x18\n\x10is_gateway_admin\x18\x04 \x01(\x08\"`\n\x11\x43reateUserRequest\x12\x17\n\x04user\x18\x01 \x01(\x0b\x32\t.api.User\x12\x10\n\x08password\x18\x02 \x01(\t\x12 \n\x07tenants\x18\x03 \x03(\x0b\x32\x0f.api.UserTenant\" \n\x12\x43reateUserResponse\x12\n\n\x02id\x18\x01 \x01(\t\"\x1c\n\x0eGetUserRequest\x12\n\n\x02id\x18\x01 \x01(\t\"\x8a\x01\n\x0fGetUserResponse\x12\x17\n\x04user\x18\x01 \x01(\x0b\x32\t.api.User\x12.\n\ncreated_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\",\n\x11UpdateUserRequest\x12\x17\n\x04user\x18\x01 \x01(\x0b\x32\t.api.User\"\x1f\n\x11\x44\x65leteUserRequest\x12\n\n\x02id\x18\x01 \x01(\t\"1\n\x10ListUsersRequest\x12\r\n\x05limit\x18\x01 \x01(\r\x12\x0e\n\x06offset\x18\x02 \x01(\r\"K\n\x11ListUsersResponse\x12\x13\n\x0btotal_count\x18\x01 \x01(\r\x12!\n\x06result\x18\x02 \x03(\x0b\x32\x11.api.UserListItem\">\n\x19UpdateUserPasswordRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t2\x97\x04\n\x0bUserService\x12P\n\x06\x43reate\x12\x16.api.CreateUserRequest\x1a\x17.api.CreateUserResponse\"\x15\x82\xd3\xe4\x93\x02\x0f\"\n/api/users:\x01*\x12I\n\x03Get\x12\x13.api.GetUserRequest\x1a\x14.api.GetUserResponse\"\x17\x82\xd3\xe4\x93\x02\x11\x12\x0f/api/users/{id}\x12Y\n\x06Update\x12\x16.api.UpdateUserRequest\x1a\x16.google.protobuf.Empty\"\x1f\x82\xd3\xe4\x93\x02\x19\x1a\x14/api/users/{user.id}:\x01*\x12Q\n\x06\x44\x65lete\x12\x16.api.DeleteUserRequest\x1a\x16.google.protobuf.Empty\"\x17\x82\xd3\xe4\x93\x02\x11*\x0f/api/users/{id}\x12I\n\x04List\x12\x15.api.ListUsersRequest\x1a\x16.api.ListUsersResponse\"\x12\x82\xd3\xe4\x93\x02\x0c\x12\n/api/users\x12r\n\x0eUpdatePassword\x12\x1e.api.UpdateUserPasswordRequest\x1a\x16.google.protobuf.Empty\"(\x82\xd3\xe4\x93\x02\"\"\x1d/api/users/{user_id}/password:\x01*Bv\n\x11io.chirpstack.apiB\tUserProtoP\x01Z.github.com/chirpstack/chirpstack/api/go/v4/api\xaa\x02\x0e\x43hirpstack.Api\xea\x02\x12\x43hirpStackAPI::APIb\x06proto3"
+descriptor_data = "\n\x0e\x61pi/user.proto\x12\x03\x61pi\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\"T\n\x04User\x12\n\n\x02id\x18\x01 \x01(\t\x12\x10\n\x08is_admin\x18\x04 \x01(\x08\x12\x11\n\tis_active\x18\x05 \x01(\x08\x12\r\n\x05\x65mail\x18\x06 \x01(\t\x12\x0c\n\x04note\x18\x07 \x01(\t\"\xae\x01\n\x0cUserListItem\x12\n\n\x02id\x18\x01 \x01(\t\x12.\n\ncreated_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\r\n\x05\x65mail\x18\x04 \x01(\t\x12\x10\n\x08is_admin\x18\x05 \x01(\x08\x12\x11\n\tis_active\x18\x06 \x01(\x08\"d\n\nUserTenant\x12\x11\n\ttenant_id\x18\x01 \x01(\t\x12\x10\n\x08is_admin\x18\x02 \x01(\x08\x12\x17\n\x0fis_device_admin\x18\x03 \x01(\x08\x12\x18\n\x10is_gateway_admin\x18\x04 \x01(\x08\"`\n\x11\x43reateUserRequest\x12\x17\n\x04user\x18\x01 \x01(\x0b\x32\t.api.User\x12\x10\n\x08password\x18\x02 \x01(\t\x12 \n\x07tenants\x18\x03 \x03(\x0b\x32\x0f.api.UserTenant\" \n\x12\x43reateUserResponse\x12\n\n\x02id\x18\x01 \x01(\t\"\x1c\n\x0eGetUserRequest\x12\n\n\x02id\x18\x01 \x01(\t\"\x8a\x01\n\x0fGetUserResponse\x12\x17\n\x04user\x18\x01 \x01(\x0b\x32\t.api.User\x12.\n\ncreated_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\",\n\x11UpdateUserRequest\x12\x17\n\x04user\x18\x01 \x01(\x0b\x32\t.api.User\"\x1f\n\x11\x44\x65leteUserRequest\x12\n\n\x02id\x18\x01 \x01(\t\"1\n\x10ListUsersRequest\x12\r\n\x05limit\x18\x01 \x01(\r\x12\x0e\n\x06offset\x18\x02 \x01(\r\"K\n\x11ListUsersResponse\x12\x13\n\x0btotal_count\x18\x01 \x01(\r\x12!\n\x06result\x18\x02 \x03(\x0b\x32\x11.api.UserListItem\">\n\x19UpdateUserPasswordRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t2\x97\x04\n\x0bUserService\x12P\n\x06\x43reate\x12\x16.api.CreateUserRequest\x1a\x17.api.CreateUserResponse\"\x15\x82\xd3\xe4\x93\x02\x0f\"\n/api/users:\x01*\x12I\n\x03Get\x12\x13.api.GetUserRequest\x1a\x14.api.GetUserResponse\"\x17\x82\xd3\xe4\x93\x02\x11\x12\x0f/api/users/{id}\x12Y\n\x06Update\x12\x16.api.UpdateUserRequest\x1a\x16.google.protobuf.Empty\"\x1f\x82\xd3\xe4\x93\x02\x19\x1a\x14/api/users/{user.id}:\x01*\x12Q\n\x06\x44\x65lete\x12\x16.api.DeleteUserRequest\x1a\x16.google.protobuf.Empty\"\x17\x82\xd3\xe4\x93\x02\x11*\x0f/api/users/{id}\x12I\n\x04List\x12\x15.api.ListUsersRequest\x1a\x16.api.ListUsersResponse\"\x12\x82\xd3\xe4\x93\x02\x0c\x12\n/api/users\x12r\n\x0eUpdatePassword\x12\x1e.api.UpdateUserPasswordRequest\x1a\x16.google.protobuf.Empty\"(\x82\xd3\xe4\x93\x02\"\"\x1d/api/users/{user_id}/password:\x01*B\xa4\x01\n\x11io.chirpstack.apiB\tUserProtoP\x01Z.github.com/chirpstack/chirpstack/api/go/v4/api\xaa\x02\x0e\x43hirpstack.Api\xca\x02\x0e\x43hirpstack\\Api\xe2\x02\x1aGPBMetadata\\Chirpstack\\Api\xea\x02\x12\x43hirpStackAPI::APIb\x06proto3"
 
-pool = Google::Protobuf::DescriptorPool.generated_pool
-
-begin
-  pool.add_serialized_file(descriptor_data)
-rescue TypeError => e
-  # Compatibility code: will be removed in the next major version.
-  require 'google/protobuf/descriptor_pb'
-  parsed = Google::Protobuf::FileDescriptorProto.decode(descriptor_data)
-  parsed.clear_dependency
-  serialized = parsed.class.encode(parsed)
-  file = pool.add_serialized_file(serialized)
-  warn "Warning: Protobuf detected an import path issue while loading generated file #{__FILE__}"
-  imports = [
-    ["google.protobuf.Timestamp", "google/protobuf/timestamp.proto"],
-  ]
-  imports.each do |type_name, expected_filename|
-    import_file = pool.lookup(type_name).file_descriptor
-    if import_file.name != expected_filename
-      warn "- #{file.name} imports #{expected_filename}, but that import was loaded as #{import_file.name}"
-    end
-  end
-  warn "Each proto file must use a consistent fully-qualified name."
-  warn "This will become an error in the next major version."
-end
+pool = ::Google::Protobuf::DescriptorPool.generated_pool
+pool.add_serialized_file(descriptor_data)
 
 module ChirpStackAPI
   module API

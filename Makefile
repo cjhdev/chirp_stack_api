@@ -1,17 +1,14 @@
-VERSION := $(shell cat version)
-UPSTREAM := ruby:3.2.2-bullseye
-NAME := chirp-stack-api-generator
+generate:
+	docker run -ti --rm --user 1000:1000 -v $(shell pwd)/lib:/generator/lib $(shell make container)
 
-default:
-	docker build -t $(NAME):$(VERSION) .
+container: SILENT := >/dev/null
+container:
+	@ docker build -q .
 
-generate: default
-	docker run -ti --rm --user 1000:1000 -v $(shell pwd)/lib:/generator/lib $(NAME):$(VERSION)
+dev_container:
+	docker build .
 
 inspect:
-	docker run -ti --rm --entrypoint=/bin/bash $(NAME):$(VERSION)
+	docker run -ti --rm --entrypoint=/bin/bash $(shell make default)
 
-.PHONY: \
-  default \
-  inspect \
-  generate
+.PHONY: container dev_container inspect generate

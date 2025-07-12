@@ -30,6 +30,17 @@ module ChirpStackAPI
         rpc :GenerateClientCertificate, ::ChirpStackAPI::API::GenerateGatewayClientCertificateRequest, ::ChirpStackAPI::API::GenerateGatewayClientCertificateResponse
         # GetMetrics returns the gateway metrics.
         rpc :GetMetrics, ::ChirpStackAPI::API::GetGatewayMetricsRequest, ::ChirpStackAPI::API::GetGatewayMetricsResponse
+        # GetDutyCycleMetrics returns the duty-cycle metrics.
+        # Note that only the last 2 hours of data are stored. Currently only per minute aggregation is available.
+        rpc :GetDutyCycleMetrics, ::ChirpStackAPI::API::GetGatewayDutyCycleMetricsRequest, ::ChirpStackAPI::API::GetGatewayDutyCycleMetricsResponse
+        # Get the given Relay Gateway.
+        rpc :GetRelayGateway, ::ChirpStackAPI::API::GetRelayGatewayRequest, ::ChirpStackAPI::API::GetRelayGatewayResponse
+        # List the detected Relay Gateways.
+        rpc :ListRelayGateways, ::ChirpStackAPI::API::ListRelayGatewaysRequest, ::ChirpStackAPI::API::ListRelayGatewaysResponse
+        # Update the given Relay Gateway.
+        rpc :UpdateRelayGateway, ::ChirpStackAPI::API::UpdateRelayGatewayRequest, ::Google::Protobuf::Empty
+        # Delete the given Relay Gateway.
+        rpc :DeleteRelayGateway, ::ChirpStackAPI::API::DeleteRelayGatewayRequest, ::Google::Protobuf::Empty
       end
 
       Stub = Service.rpc_stub_class

@@ -32,6 +32,8 @@ module ChirpStackAPI
         rpc :Settings, ::Google::Protobuf::Empty, ::ChirpStackAPI::API::SettingsResponse
         # OpenId Connect login.
         rpc :OpenIdConnectLogin, ::ChirpStackAPI::API::OpenIdConnectLoginRequest, ::ChirpStackAPI::API::OpenIdConnectLoginResponse
+        # OAuth2 login.
+        rpc :OAuth2Login, ::ChirpStackAPI::API::OAuth2LoginRequest, ::ChirpStackAPI::API::OAuth2LoginResponse
         # GetDevicesSummary returns an aggregated summary of the devices.
         rpc :GetDevicesSummary, ::ChirpStackAPI::API::GetDevicesSummaryRequest, ::ChirpStackAPI::API::GetDevicesSummaryResponse
         # GetGatewaysSummary returns an aggregated summary of the gateways.
@@ -46,6 +48,8 @@ module ChirpStackAPI
         rpc :ListRegions, ::Google::Protobuf::Empty, ::ChirpStackAPI::API::ListRegionsResponse
         # GetRegion returns the region details for the given region.
         rpc :GetRegion, ::ChirpStackAPI::API::GetRegionRequest, ::ChirpStackAPI::API::GetRegionResponse
+        # GetVersion returns the ChirpStack version.
+        rpc :GetVersion, ::Google::Protobuf::Empty, ::ChirpStackAPI::API::GetVersionResponse
       end
 
       Stub = Service.rpc_stub_class

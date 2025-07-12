@@ -45,7 +45,7 @@ end
 
 ## generate
 
-system "grpc_tools_ruby_protoc -I/opt/googleapis -I#{OUTPUT_PROTO} --ruby_out=#{OUTPUT_GENERATED} --grpc_out=#{OUTPUT_GENERATED} #{Dir[File.join(OUTPUT_PROTO, "**", "*.proto")].join(" ")}"
+system "grpc_tools_ruby_protoc -I#{OUTPUT_PROTO} --ruby_out=#{OUTPUT_GENERATED} --grpc_out=#{OUTPUT_GENERATED} #{Dir[File.join(OUTPUT_PROTO, "**", "*.proto")].join(" ")}"
 
 File.open(File.join(OUTPUT_LIB, "chirp_stack_api", "version.rb"), "w") do |f|
 

@@ -9,6 +9,8 @@ option java_package = "io.chirpstack.api.gw";
 option java_multiple_files = true;
 option java_outer_classname = "GatewayProto";
 option csharp_namespace = "Chirpstack.Gateway";
+option php_namespace = "Chirpstack\\Gateway";
+option php_metadata_namespace = "GPBMetadata\\Chirpstack\\Gateway";
 
 import "common/common.proto";
 import "google/protobuf/timestamp.proto";
@@ -99,6 +101,85 @@ enum TxAckStatus {
 
   // Internal error.
   INTERNAL_ERROR = 10;
+
+  // Duty-cycle overflow.
+  DUTY_CYCLE_OVERFLOW = 11;
+}
+
+// Gateway events as reported by the ChirpStack Concentratord ZMQ interface.
+message Event {
+  oneof event {
+    // Uplink frame.
+    UplinkFrame uplink_frame = 1;
+
+    // Gateway stats.
+    GatewayStats gateway_stats = 2;
+
+    // Gateway Mesh Event.
+    MeshEvent mesh = 3;
+  }
+}
+
+// Commands that can be sent to the ChirpStack Concentratord ZMQ interface.
+message Command {
+  oneof command {
+    // Downlink frame.
+    DownlinkFrame send_downlink_frame = 1;
+
+    // Gateway configuration.
+    GatewayConfiguration set_gateway_configuration = 2;
+
+    // Get Gateway ID.
+    GetGatewayIdRequest get_gateway_id = 3;
+
+    // Get location.
+    GetLocationRequest get_location = 4;
+
+    // Gateway Mesh Command.
+    MeshCommand mesh = 5;
+  }
+}
+
+message MeshEvent {
+  // Gateway ID (of the Border Gateway).
+  string gateway_id = 1;
+
+  // Relay ID.
+  string relay_id = 2;
+
+  // Timestamp (second precision).
+  google.protobuf.Timestamp time = 3;
+
+  // Mesh events.
+  repeated MeshEventItem events = 4;
+}
+
+message MeshEventItem {
+  oneof event {
+    // Proprietary Mesh event.
+    MeshEventProprietary proprietary = 1;
+
+    // Mesh heartbeat.
+    MeshEventHeartbeat heartbeat = 2;
+  }
+}
+
+message MeshCommand {
+    // Gateway ID (of the Border Gateway).
+  string gateway_id = 1;
+
+  // Relay ID.
+  string relay_id = 2;
+
+  // Mesh events.
+  repeated MeshCommandItem commands = 3;
+}
+
+message MeshCommandItem {
+  oneof command {
+    // Proprietary Mesh command.
+    MeshCommandProprietary proprietary = 1;
+  }
 }
 
 message Modulation {
@@ -251,6 +332,9 @@ message GatewayStats {
 
   // Tx packets per status.
   map<string, uint32> tx_packets_per_status = 16;
+
+  // Duty-cycle statistics (Concentratord only).
+  DutyCycleStats duty_cycle_stats = 18;
 }
 
 message PerModulationCount {
@@ -259,6 +343,34 @@ message PerModulationCount {
 
   // Count.
   uint32 count = 2;
+}
+
+message DutyCycleStats {
+  // Implemented regulation.
+  common.Regulation regulation = 1;
+
+  // Tracking window.
+  google.protobuf.Duration window = 2;
+
+  // Bands.
+  repeated DutyCycleBand bands = 3;
+}
+
+message DutyCycleBand {
+  // Band name.
+  string name = 1;
+
+  // Min frequency for this band.
+  uint32 frequency_min = 2;
+
+  // Max frequency for this band.
+  uint32 frequency_max = 3;
+
+  // Max. allowed load.
+  google.protobuf.Duration load_max = 4;
+
+  // Tracked load (within the window of the regionlation).
+  google.protobuf.Duration load_tracked = 5;
 }
 
 message UplinkRxInfoLegacy {
@@ -577,6 +689,23 @@ message GatewayConfiguration {
   google.protobuf.Duration stats_interval = 4;
 }
 
+message GetGatewayIdRequest {}
+
+message GetGatewayIdResponse {
+  // Gateway ID.
+  string gateway_id = 1;
+}
+
+message GetLocationRequest {}
+
+message GetLocationResponse {
+  // Location.
+  common.Location location = 1;
+
+  // Last updated at.
+  google.protobuf.Timestamp updated_at = 2;
+}
+
 message ChannelConfiguration {
   // Frequency (Hz).
   uint32 frequency = 1;
@@ -714,4 +843,40 @@ message ConnState {
   }
 
   State state = 2;
+}
+
+// Gateway Mesh heartbeat (sent periodically by the Relay Gateways).
+message MeshEventHeartbeat {
+
+  // Relay path.
+  repeated MeshEventHeartbeatRelayPath relay_path = 4;
+}
+
+message MeshEventHeartbeatRelayPath {
+  // Relay ID.
+  string relay_id = 1;
+
+  // RSSI.
+  int32 rssi = 2;
+
+  // SNR.
+  int32 snr = 3;
+}
+
+// Proprietary mesh event.
+message MeshEventProprietary {
+  // Event type.
+  uint32 event_type = 1;
+
+  // Payload.
+  bytes payload = 2;
+}
+
+// Proprietary mesh command.
+message MeshCommandProprietary {
+  // Command type.
+  uint32 command_type = 1;
+
+  // Payload.
+  bytes payload = 2;
 }

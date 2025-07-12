@@ -7,7 +7,7 @@ A Ruby Gem containing the generated GRPC code for talking to [ChirpStack V4](htt
 
 Add this repository to your Gemfile:
 
-`gem 'chirp_stack_api', git: 'https://github.com/cjhdev/chirp_stack_api', tag: 'v0.1.0'`
+`gem 'chirp_stack_api', git: 'https://github.com/cjhdev/chirp_stack_api', tag: 'v0.2.0'`
 
 then
 
@@ -27,7 +27,7 @@ e.g.
 
 ## How To Update
 
-`make generate`
+`make`
 
 - creates docker environment
 - runs the generator script

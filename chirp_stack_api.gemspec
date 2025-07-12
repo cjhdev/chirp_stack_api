@@ -10,9 +10,8 @@ Gem::Specification.new do |s|
   s.date = Date.today.to_s
   s.files = Dir.glob("lib/**/*.rb")
 
-  s.add_runtime_dependency 'grpc'
-  s.add_runtime_dependency 'grpc-tools'
+  s.add_runtime_dependency 'grpc', '~> 1.73.0'
 
-  s.required_ruby_version = '>= 2.0'
+  s.required_ruby_version = '>= 3.0'
 
 end

@@ -111,6 +111,10 @@ module ChirpStackAPI
         rpc :DeleteIftttIntegration, ::ChirpStackAPI::API::DeleteIftttIntegrationRequest, ::Google::Protobuf::Empty
         # Generates application ID specific client-certificate.
         rpc :GenerateMqttIntegrationClientCertificate, ::ChirpStackAPI::API::GenerateMqttIntegrationClientCertificateRequest, ::ChirpStackAPI::API::GenerateMqttIntegrationClientCertificateResponse
+        # List device-profiles used within the given application.
+        rpc :ListDeviceProfiles, ::ChirpStackAPI::API::ListApplicationDeviceProfilesRequest, ::ChirpStackAPI::API::ListApplicationDeviceProfilesResponse
+        # List device tags used within the given application.
+        rpc :ListDeviceTags, ::ChirpStackAPI::API::ListApplicationDeviceTagsRequest, ::ChirpStackAPI::API::ListApplicationDeviceTagsResponse
       end
 
       Stub = Service.rpc_stub_class
